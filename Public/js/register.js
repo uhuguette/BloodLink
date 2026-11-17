@@ -14,12 +14,21 @@ registrationForm.addEventListener('submit', async (event) => {
 
     const message = document.getElementById('registrationMessage');
 
+    if (!donor.name || !donor.bloodType || !donor.district) {
+    message.textContent = 'Please fill in all required fields.';
+    return;
+}
+
     const phonePattern = /^07\d{8}$/;
 
-    if (!phonePattern.test(donor.phone)) {
-        message.textContent = 'Enter a valid Rwandan phone number (07XXXXXXXX).';
-        return;
-    }
+    const phoneError = document.getElementById('phoneError');
+
+if (!phonePattern.test(donor.phone)) {
+    phoneError.textContent = 'Enter a valid Rwandan phone number (07XXXXXXXX).';
+    return;
+}
+
+phoneError.textContent = '';
 
     if (!donor.consent) {
         message.textContent = 'Please agree to the consent statement.';

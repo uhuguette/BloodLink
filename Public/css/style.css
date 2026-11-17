@@ -48,6 +48,13 @@ form {
     gap: 10px;
 }
 
+.error-message {
+    color: red;
+    display: block;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
 label {
     font-weight: bold;
 }
