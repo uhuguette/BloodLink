@@ -154,3 +154,62 @@ footer {
     position: relative;
     z-index: 1;
 }
+/* Hero Heading */
+.hero h2 {
+    color: #202638;
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1.05;
+    margin: 25px 0;
+}
+
+.hero h2 span {
+    color: #c91f2c;
+}
+
+/* Hero Location Badge */
+.hero-badge {
+    display: inline-block;
+    background-color: #fff0f1;
+    color: #c91f2c;
+    border: 1px solid #ffd5d9;
+    padding: 7px 16px;
+    border-radius: 25px;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+/* Hero Buttons */
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.hero-buttons .btn {
+    background-color: #dc2626;
+    color: white;
+    padding: 13px 25px;
+    border: 2px solid #dc2626;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.hero-buttons .btn:hover {
+    background-color: #b91c1c;
+    border-color: #b91c1c;
+}
+
+.hero-buttons .btn-secondary {
+    background-color: white;
+    color: #dc2626;
+    border: 2px solid #dc2626;
+}
+
+.hero-buttons .btn-secondary:hover {
+    background-color: #fff0f1;
+}
