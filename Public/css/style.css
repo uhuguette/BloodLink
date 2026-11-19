@@ -52,9 +52,9 @@ header ul li a:hover {
 }
 
 main {
-    width: 90%;
-    max-width: 900px;
-    margin: 30px auto;
+    width: 100%;
+    max-width: none;
+    margin: 0;
 }
 
 section {
@@ -129,52 +129,28 @@ footer {
 
 /* Homepage Hero Section */
 .hero {
-    background-color: #b71c1c;
-    color: white;
-    text-align: center;
-    padding: 70px 30px;
-    border-radius: 10px;
-}
-
-.hero h2 {
-    color: white;
-    font-size: 36px;
-    margin-bottom: 20px;
-}
-
-.hero p {
-    font-size: 18px;
-    margin-bottom: 25px;
-}
-
-.hero-buttons {
+    position: relative;
+    width: 100%;
+    min-height: 480px;
     display: flex;
     justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
+    align-items: center;
+    text-align: center;
+    padding: 70px 20px;
+    background: linear-gradient(
+        135deg,
+        #fffafa,
+        #fff0f1,
+        #ffffff
+    );
+    border-radius: 0;
+    box-shadow: none;
+    margin-bottom: 0;
+    overflow: hidden;
 }
 
-.btn {
-    display: inline-block;
-    background-color: white;
-    color: #b71c1c;
-    padding: 12px 25px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.btn:hover {
-    background-color: #f5cccc;
-}
-
-.btn-secondary {
-    background-color: transparent;
-    color: white;
-    border: 2px solid white;
-}
-
-.btn-secondary:hover {
-    background-color: white;
-    color: #b71c1c;
+.hero-content {
+    max-width: 750px;
+    position: relative;
+    z-index: 1;
 }

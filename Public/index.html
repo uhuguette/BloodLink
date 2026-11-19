@@ -1,182 +1,118 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BloodLink Rwanda</title>
+    <title>BloodLink Rwanda - Home</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+    <!-- Navigation -->
     <header>
-        <h1>BloodLink Rwanda</h1>
-        <p>Connecting blood donors with people who need them.</p>
+        <nav>
+            <h1>BloodLink <span>Rwanda</span></h1>
+
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="search.html">Find a Donor</a></li>
+                <li><a href="register.html">Become a Donor</a></li>
+            </ul>
+        </nav>
     </header>
 
+    <!-- Hero Section -->
     <main>
-        <section id="search-section">
-            <h2>Find a Blood Donor</h2>
+        <section class="hero">
+    <div class="hero-content">
 
-            <form id="searchForm">
-                <label for="searchBloodType">Blood Type</label>
-                <select id="searchBloodType" required>
-                    <option value="">Select blood type</option>
-                    <option value="A+">A+</option>
-                    <option value="A-">A-</option>
-                    <option value="B+">B+</option>
-                    <option value="B-">B-</option>
-                    <option value="AB+">AB+</option>
-                    <option value="AB-">AB-</option>
-                    <option value="O+">O+</option>
-                    <option value="O-">O-</option>
-                </select>
+        <div class="hero-badge">
+            ● Connecting Donors Across Rwanda
+        </div>
 
-                <label for="searchDistrict">District</label>
-<select id="searchDistrict" required>
-    <option value="">Select district</option>
+        <h2>
+            Donate Blood.<br>
+            <span>Save Lives.</span><br>
+            Instantly.
+        </h2>
 
-    <optgroup label="Kigali City">
-        <option value="Gasabo">Gasabo</option>
-        <option value="Kicukiro">Kicukiro</option>
-        <option value="Nyarugenge">Nyarugenge</option>
-    </optgroup>
+        <p>
+            Connect with willing blood donors across Rwanda
+            through a platform that helps people find donors
+            by blood type and district.
+        </p>
 
-    <optgroup label="Eastern Province">
-        <option value="Bugesera">Bugesera</option>
-        <option value="Gatsibo">Gatsibo</option>
-        <option value="Kayonza">Kayonza</option>
-        <option value="Kirehe">Kirehe</option>
-        <option value="Ngoma">Ngoma</option>
-        <option value="Nyagatare">Nyagatare</option>
-        <option value="Rwamagana">Rwamagana</option>
-    </optgroup>
+        <div class="hero-buttons">
+            <a href="search.html" class="btn">
+                ♥ I Need Blood →
+            </a>
 
-    <optgroup label="Northern Province">
-        <option value="Burera">Burera</option>
-        <option value="Gakenke">Gakenke</option>
-        <option value="Gicumbi">Gicumbi</option>
-        <option value="Musanze">Musanze</option>
-        <option value="Rulindo">Rulindo</option>
-    </optgroup>
+            <a href="register.html" class="btn btn-secondary">
+                ♡ I Want to Donate →
+            </a>
+        </div>
 
-    <optgroup label="Southern Province">
-        <option value="Gisagara">Gisagara</option>
-        <option value="Huye">Huye</option>
-        <option value="Kamonyi">Kamonyi</option>
-        <option value="Muhanga">Muhanga</option>
-        <option value="Nyamagabe">Nyamagabe</option>
-        <option value="Nyanza">Nyanza</option>
-        <option value="Nyaruguru">Nyaruguru</option>
-        <option value="Ruhango">Ruhango</option>
-    </optgroup>
+        <div class="hero-features">
+            <span>✓ Donor Consent</span>
+            <span>♡ Community Support</span>
+            <span>📍 Across Rwanda</span>
+        </div>
 
-    <optgroup label="Western Province">
-        <option value="Karongi">Karongi</option>
-        <option value="Ngororero">Ngororero</option>
-        <option value="Nyabihu">Nyabihu</option>
-        <option value="Nyamasheke">Nyamasheke</option>
-        <option value="Rubavu">Rubavu</option>
-        <option value="Rusizi">Rusizi</option>
-        <option value="Rutsiro">Rutsiro</option>
-    </optgroup>
-</select>
+    </div>
+</section>
 
-                <button type="submit">Search Donors</button>
-            </form>
+        <!-- About Section -->
+        <section class="about">
+            <h2>About BloodLink</h2>
 
-            <div id="searchResults"></div>
+            <p>
+                BloodLink Rwanda is a platform designed to make it easier
+                for people searching for blood donors to connect with
+                willing donors based on blood type and district.
+            </p>
         </section>
 
-        <section id="registration-section">
-            <h2>Become a Blood Donor</h2>
+        <!-- How It Works -->
+        <section class="how-it-works">
+            <h2>How BloodLink Works</h2>
 
-            <form id="registrationForm">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" required>
+            <div class="steps">
+                <div class="step">
+                    <h3>1. Search</h3>
+                    <p>Choose the blood type and district you need.</p>
+                </div>
 
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" placeholder="07XXXXXXXX" required>
-                <small id="phoneError" class="error-message"></small>
+                <div class="step">
+                    <h3>2. Connect</h3>
+                    <p>Find available donor contact information.</p>
+                </div>
 
-                <label for="bloodType">Blood Type</label>
-                <select id="bloodType" required>
-                    <option value="">Select blood type</option>
-                    <option value="A+">A+</option>
-                    <option value="A-">A-</option>
-                    <option value="B+">B+</option>
-                    <option value="B-">B-</option>
-                    <option value="AB+">AB+</option>
-                    <option value="AB-">AB-</option>
-                    <option value="O+">O+</option>
-                    <option value="O-">O-</option>
-                </select>
+                <div class="step">
+                    <h3>3. Help</h3>
+                    <p>Contact the donor to discuss the next steps.</p>
+                </div>
+            </div>
+        </section>
 
-                <label for="district">District</label>
-                <select id="district" required>
-    <option value="">Select district</option>
+        <!-- Call to Action -->
+        <section class="join-us">
+            <h2>Be Part of the Change</h2>
 
-    <optgroup label="Kigali City">
-        <option value="Gasabo">Gasabo</option>
-        <option value="Kicukiro">Kicukiro</option>
-        <option value="Nyarugenge">Nyarugenge</option>
-    </optgroup>
+            <p>
+                Your willingness to help can make a difference
+                in someone's life.
+            </p>
 
-    <optgroup label="Eastern Province">
-        <option value="Bugesera">Bugesera</option>
-        <option value="Gatsibo">Gatsibo</option>
-        <option value="Kayonza">Kayonza</option>
-        <option value="Kirehe">Kirehe</option>
-        <option value="Ngoma">Ngoma</option>
-        <option value="Nyagatare">Nyagatare</option>
-        <option value="Rwamagana">Rwamagana</option>
-    </optgroup>
-
-    <optgroup label="Northern Province">
-        <option value="Burera">Burera</option>
-        <option value="Gakenke">Gakenke</option>
-        <option value="Gicumbi">Gicumbi</option>
-        <option value="Musanze">Musanze</option>
-        <option value="Rulindo">Rulindo</option>
-    </optgroup>
-
-    <optgroup label="Southern Province">
-        <option value="Gisagara">Gisagara</option>
-        <option value="Huye">Huye</option>
-        <option value="Kamonyi">Kamonyi</option>
-        <option value="Muhanga">Muhanga</option>
-        <option value="Nyamagabe">Nyamagabe</option>
-        <option value="Nyanza">Nyanza</option>
-        <option value="Nyaruguru">Nyaruguru</option>
-        <option value="Ruhango">Ruhango</option>
-    </optgroup>
-
-    <optgroup label="Western Province">
-        <option value="Karongi">Karongi</option>
-        <option value="Ngororero">Ngororero</option>
-        <option value="Nyabihu">Nyabihu</option>
-        <option value="Nyamasheke">Nyamasheke</option>
-        <option value="Rubavu">Rubavu</option>
-        <option value="Rusizi">Rusizi</option>
-        <option value="Rutsiro">Rutsiro</option>
-    </optgroup>
-</select>
-
-                <label>
-                    <input type="checkbox" id="consent" required>
-                    I agree to share my contact information with people searching for donors.
-                </label>
-
-                <button type="submit">Register as Donor</button>
-            </form>
-
-            <div id="registrationMessage"></div>
+            <a href="register.html" class="btn">Register as a Donor</a>
         </section>
     </main>
 
+    <!-- Footer -->
     <footer>
         <p>BloodLink Rwanda | A student project prototype</p>
+        <p>Connecting donors, supporting communities.</p>
     </footer>
 
-    <script src="js/register.js"></script>
 </body>
 </html>
