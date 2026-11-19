@@ -433,3 +433,59 @@ header {
     color: #666;
     font-size: 14px;
 }
+/* Join Us Section */
+.join-us {
+    text-align: center;
+    padding: 65px 20px;
+    background: linear-gradient(135deg, #fff0f1, #ffffff);
+    box-shadow: none;
+    border-radius: 0;
+    margin-bottom: 0;
+}
+
+.join-us h2 {
+    color: #202638;
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.join-us p {
+    max-width: 600px;
+    margin: 0 auto 25px;
+    color: #666;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.join-us .btn {
+    display: inline-block;
+    background-color: #c91f2c;
+    color: white;
+    padding: 13px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.join-us .btn:hover {
+    background-color: #a81722;
+}
+/* Footer Styling */
+footer {
+    background-color: #202638;
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+    line-height: 1.8;
+}
+
+footer p:first-child {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+footer p:last-child {
+    color: #ccc;
+    font-size: 13px;
+}
