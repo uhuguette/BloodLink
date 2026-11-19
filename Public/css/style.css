@@ -15,12 +15,40 @@ body {
 header {
     background-color: #b71c1c;
     color: white;
-    text-align: center;
-    padding: 30px 15px;
+    padding: 15px 5%;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
 header h1 {
-    margin-bottom: 10px;
+    font-size: 25px;
+    margin: 0;
+}
+
+header h1 span {
+    color: #ffcccc;
+}
+
+header ul {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+header ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header ul li a:hover {
+    color: #ffcccc;
 }
 
 main {
