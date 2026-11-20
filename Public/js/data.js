@@ -15,7 +15,22 @@ const BloodLinkData = {
         'Bugesera', 'Gatsibo', 'Kayonza', 'Kirehe', 'Ngoma', 'Nyagatare', 'Rwamagana',
         // Western Province
         'Karongi', 'Ngororero', 'Nyabihu', 'Nyamasheke', 'Rubavu', 'Rusizi', 'Rutsiro'
-    ]
+    ],
+
+    // Which RCBT city is closest to each district
+    NEAREST_RCBT: {
+        Gasabo: 'Kigali', Kicukiro: 'Kigali', Nyarugenge: 'Kigali',
+        Bugesera: 'Kigali', Kamonyi: 'Kigali', Muhanga: 'Kigali',
+        Rulindo: 'Kigali', Gicumbi: 'Kigali',
+        Burera: 'Musanze', Gakenke: 'Musanze', Musanze: 'Musanze',
+        Nyabihu: 'Musanze', Rubavu: 'Musanze',
+        Gisagara: 'Huye', Huye: 'Huye', Nyamagabe: 'Huye',
+        Nyanza: 'Huye', Nyaruguru: 'Huye', Ruhango: 'Huye',
+        Gatsibo: 'Rwamagana', Kayonza: 'Rwamagana', Kirehe: 'Rwamagana',
+        Ngoma: 'Rwamagana', Nyagatare: 'Rwamagana', Rwamagana: 'Rwamagana',
+        Karongi: 'Karongi', Ngororero: 'Karongi', Nyamasheke: 'Karongi',
+        Rusizi: 'Karongi', Rutsiro: 'Karongi'
+    }
 };
 
 // Allow the server (Node.js) to use the same lists
