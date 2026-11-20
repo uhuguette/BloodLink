@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>BloodLink Rwanda - Admin Login</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <span class="logo-icon">♥</span>
+            <span class="logo-text">
+                <strong>BloodLink</strong>
+                <small>Rwanda Blood Network</small>
+            </span>
+        </a>
+        <div class="nav-actions">
+            <select class="language-selector" id="languageSelector" aria-label="Language">
+                <option value="en">EN</option>
+                <option value="rw">RW</option>
+            </select>
+            <a href="index.html" class="nav-button" data-translate="home">Home</a>
+        </div>
+    </nav>
+</header>
+
+<main class="page">
+    <section class="card card-narrow">
+        <h2 data-translate="adminLoginTitle">Admin Login</h2>
+
+        <form id="loginForm" novalidate>
+            <label for="username" data-translate="labelUsername">Username</label>
+            <input type="text" id="username" autocomplete="username" required>
+
+            <label for="password" data-translate="labelPassword">Password</label>
+            <input type="password" id="password" autocomplete="current-password" required>
+
+            <button type="submit" data-translate="loginButton">Log in</button>
+            <p class="form-message" id="loginMessage" role="status" hidden></p>
+        </form>
+    </section>
+</main>
+
+<script src="js/ui.js"></script>
+<script src="js/language.js"></script>
+<script>
+    const loginForm = document.getElementById('loginForm');
+    const loginMessage = document.getElementById('loginMessage');
+    let loginMessageKey = null;
+
+    // Arrived here because the session timed out
+    if (new URLSearchParams(location.search).has('expired')) {
+        loginMessageKey = 'sessionExpired';
+        showMessage(loginMessage, t(loginMessageKey), 'error');
+    }
+
+    document.addEventListener('languagechange', () => {
+        if (loginMessageKey) showMessage(loginMessage, t(loginMessageKey), 'error');
+    });
+
+    loginForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const response = await fetch('/api/admin/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                username: document.getElementById('username').value,
+                password: document.getElementById('password').value
+            })
+        }).catch(() => null);
+
+        if (response && response.ok) {
+            location.href = '/admin';
+            return;
+        }
+
+        const result = response ? await response.json().catch(() => ({})) : {};
+        loginMessageKey = result.code || 'errGeneric';
+        showMessage(loginMessage, t(loginMessageKey), 'error');
+    });
+</script>
+</body>
+</html>
