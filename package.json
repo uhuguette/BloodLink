@@ -1,18 +1,24 @@
 {
   "name": "bloodlink",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "test": "node --test test/",
+    "seed": "node scripts/seed-donors.js",
+    "create-admin": "node scripts/create-admin.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "BloodLink Rwanda: find voluntary blood donors by blood type and district",
   "dependencies": {
     "bcrypt": "^6.0.0",
     "express": "^5.3.0",
     "express-session": "^1.19.0",
     "sqlite3": "^5.1.7"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }
