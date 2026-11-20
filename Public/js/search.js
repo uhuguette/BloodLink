@@ -111,6 +111,27 @@ searchForm.addEventListener('submit', async (event) => {
     }
 });
 
+// FR 3.3: report a number that doesn't work
+resultsSection.addEventListener('click', async (event) => {
+    const button = event.target.closest('[data-report]');
+    if (!button) return;
+
+    if (!confirm(t('reportConfirm'))) return;
+
+    const donorId = Number(button.dataset.report);
+    button.disabled = true;
+
+    try {
+        const response = await fetch(`/api/donors/${donorId}/report`, { method: 'POST' });
+        if (!response.ok) throw new Error('Report failed');
+        reportedIds.add(donorId);
+        renderResults();
+    } catch (error) {
+        button.disabled = false;
+        alert(t('errGeneric'));
+    }
+});
+
 document.addEventListener('languagechange', () => {
     if (messageKey) setSearchMessage(messageKey.key, messageKey.type);
     renderResults();
