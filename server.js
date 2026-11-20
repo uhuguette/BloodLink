@@ -37,6 +37,12 @@ app.use(express.static(path.join(__dirname, 'Public')));
 
 // ---------- Helpers ----------
 
+function staleCutoff() {
+    const date = new Date();
+    date.setDate(date.getDate() - STALE_DAYS);
+    return date.toISOString();
+}
+
 function firstName(fullName) {
     return fullName.trim().split(/\s+/)[0];
 }
@@ -120,14 +126,14 @@ app.get('/api/donors/search', async (req, res) => {
     }
 
     try {
-        // FR 2.3: hidden donors are left out
+        // FR 2.3: hidden donors (reported twice) and donors not reconfirmed in 90 days are left out
         const rows = await all(
             `SELECT id, name, blood_type, district, phone, last_confirmed
              FROM Donors
-             WHERE blood_type = ? AND district = ? AND active = 1
+             WHERE blood_type = ? AND district = ? AND active = 1 AND last_confirmed >= ?
              ORDER BY last_confirmed DESC
              LIMIT ?`,
-            [bloodType, district, MAX_RESULTS]
+            [bloodType, district, staleCutoff(), MAX_RESULTS]
         );
 
         // NFR 5: only the first name is shown
