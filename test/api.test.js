@@ -161,3 +161,24 @@ test('Admin "keep" restores a flagged donor to search', async () => {
     await fetch(`${base}/api/admin/donors/${donor.id}/keep`, { method: 'POST', headers: { cookie } });
     assert.strictEqual((await search('A-', 'Musanze')).donors.length, 1);
 });
+
+test('NFR 7: search over 1,000 donors answers in under 2 seconds', async () => {
+    await run('BEGIN');
+    const now = new Date().toISOString();
+    for (let i = 0; i < 1000; i++) {
+        await run(
+            `INSERT INTO Donors (name, phone, blood_type, district, consent, registration_date, last_confirmed, active)
+             VALUES (?, ?, 'O+', 'Gasabo', 1, ?, ?, 1)`,
+            [`Load${i} Test`, `0789${String(i).padStart(6, '0')}`, now, now]
+        );
+    }
+    await run('COMMIT');
+
+    let fast = 0;
+    for (let i = 0; i < 20; i++) {
+        const start = Date.now();
+        await search('O+', 'Gasabo');
+        if (Date.now() - start < 2000) fast++;
+    }
+    assert.ok(fast >= 19, `${fast}/20 searches were under 2 seconds`);
+});
