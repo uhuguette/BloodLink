@@ -287,6 +287,30 @@ app.get('/api/admin/donors', requireAdmin, async (req, res) => {
     }
 });
 
+// FR 5.3 + NFR 3: remove a donor and record it in the removal log
+app.delete('/api/admin/donors/:id', requireAdmin, async (req, res) => {
+    const donorId = Number(req.params.id);
+    if (!Number.isInteger(donorId)) return fail(res, 400, 'errGeneric', 'Invalid donor.');
+
+    try {
+        const donor = await get('SELECT id FROM Donors WHERE id = ?', [donorId]);
+        if (!donor) return fail(res, 404, 'errGeneric', 'Donor not found.');
+
+        // The log is written first, so a removal can never go unrecorded
+        await run(
+            'INSERT INTO RemovalLog (admin_username, donor_id, removed_at) VALUES (?, ?, ?)',
+            [req.session.admin, donorId, new Date().toISOString()]
+        );
+        await run('DELETE FROM Reports WHERE donor_id = ?', [donorId]);
+        await run('DELETE FROM Donors WHERE id = ?', [donorId]);
+
+        return res.json({ code: 'removed', message: 'Donor removed.' });
+    } catch (error) {
+        console.error(error.message);
+        return fail(res, 500, 'errGeneric', 'Could not remove donor.');
+    }
+});
+
 // Start the server
 app.listen(PORT, () => {
     console.log(`BloodLink is running at http://localhost:${PORT}`);
