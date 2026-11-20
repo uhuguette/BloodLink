@@ -112,3 +112,52 @@ test('FR 3.3: two reports hide a donor; one person cannot report twice', async (
     await fetch(`${base}/api/donors/${donor.id}/report`, { method: 'POST' });
     assert.strictEqual((await search('B+', 'Nyanza')).donors.length, 0);
 });
+
+test('NFR 1: admin pages are blocked without login', async () => {
+    const page = await fetch(`${base}/admin`);
+    assert.strictEqual(page.status, 403);
+    assert.match(await page.text(), /Access denied/);
+
+    assert.strictEqual((await fetch(`${base}/api/admin/donors`)).status, 401);
+    assert.strictEqual((await fetch(`${base}/admin.html`)).status, 404);
+});
+
+test('FR 5.1: wrong password gives access denied', async () => {
+    const response = await fetch(`${base}/api/admin/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: ADMIN_USER, password: 'wrong-password' })
+    });
+    assert.strictEqual(response.status, 401);
+});
+
+test('NFR 2: admin password is stored as a hash', async () => {
+    const admin = await get('SELECT password FROM Admins WHERE username = ?', [ADMIN_USER]);
+    assert.notStrictEqual(admin.password, ADMIN_PASS);
+    assert.match(admin.password, /^\$2[aby]\$/);
+});
+
+test('FR 5.2 + 5.3 + NFR 3: admin sees flagged donors, removal is logged', async () => {
+    const cookie = await loginCookie();
+    const { donors } = await (await fetch(`${base}/api/admin/donors`, { headers: { cookie } })).json();
+
+    const flagged = donors.find((d) => d.phone === '0785555555');
+    assert.strictEqual(flagged.flagged, true);
+    assert.strictEqual(flagged.reported, true);
+    assert.strictEqual(donors.find((d) => d.phone === '0784444444').stale, true);
+
+    const removed = await fetch(`${base}/api/admin/donors/${flagged.id}`, { method: 'DELETE', headers: { cookie } });
+    assert.strictEqual(removed.status, 200);
+
+    const log = await get('SELECT * FROM RemovalLog WHERE donor_id = ?', [flagged.id]);
+    assert.strictEqual(log.admin_username, ADMIN_USER);
+    assert.ok(log.removed_at);
+    assert.strictEqual(await get('SELECT id FROM Donors WHERE id = ?', [flagged.id]), undefined);
+});
+
+test('Admin "keep" restores a flagged donor to search', async () => {
+    const cookie = await loginCookie();
+    const donor = await get("SELECT id FROM Donors WHERE phone = '0784444444'");
+    await fetch(`${base}/api/admin/donors/${donor.id}/keep`, { method: 'POST', headers: { cookie } });
+    assert.strictEqual((await search('A-', 'Musanze')).donors.length, 1);
+});
