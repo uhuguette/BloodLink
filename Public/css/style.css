@@ -905,3 +905,22 @@ nav button.nav-button {
     color: #854d0e;
 }
 
+/* No sideways scrolling on 360px phones (NFR 12) */
+@media (max-width: 400px) {
+    .nav-actions {
+        width: 100%;
+    }
+
+    .nav-button {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+
+    .card h2 {
+        font-size: 22px;
+    }
+}
+
+.language-selector {
+    width: auto;
+}
