@@ -1,18 +1,23 @@
 
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
+const fs = require('fs');
 
-const dbPath = path.join(__dirname, 'database', 'bloodlink.db');
+// DB_PATH lets the tests use a separate database file
+const dbPath = process.env.DB_PATH || path.join(__dirname, 'database', 'bloodlink.db');
+fs.mkdirSync(path.dirname(dbPath), { recursive: true });
 
 const db = new sqlite3.Database(dbPath, (error) => {
     if (error) {
         console.error('Database connection failed:', error.message);
-    } else {
+    } else if (process.env.NODE_ENV !== 'test') {
         console.log('Connected to BloodLink database.');
     }
 });
 
 db.serialize(() => {
+    db.run('PRAGMA foreign_keys = ON');
+
     db.run(`
         CREATE TABLE IF NOT EXISTS Donors (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -27,12 +32,15 @@ db.serialize(() => {
         )
     `);
 
+    // Makes searching by blood type + district fast (NFR 7)
+    db.run('CREATE INDEX IF NOT EXISTS idx_donors_search ON Donors (blood_type, district, active)');
+
     db.run(`
         CREATE TABLE IF NOT EXISTS Reports (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             donor_id INTEGER NOT NULL,
             reported_at TEXT NOT NULL,
-            FOREIGN KEY (donor_id) REFERENCES Donors(id)
+            FOREIGN KEY (donor_id) REFERENCES Donors(id) ON DELETE CASCADE
         )
     `);
 
@@ -60,6 +68,7 @@ db.serialize(() => {
             phone TEXT NOT NULL
         )
     `);
+
 });
 
 module.exports = db;
