@@ -176,6 +176,13 @@ app.post('/api/donors/:id/report', async (req, res) => {
         const donor = await get('SELECT id FROM Donors WHERE id = ?', [donorId]);
         if (!donor) return fail(res, 404, 'errGeneric', 'Donor not found.');
 
+        // One report per donor per browser, so one person cannot hide a donor alone
+        req.session.reported = req.session.reported || [];
+        if (req.session.reported.includes(donorId)) {
+            return res.json({ code: 'reportThanks', message: 'Thank you. The report was recorded.' });
+        }
+        req.session.reported.push(donorId);
+
         await run('INSERT INTO Reports (donor_id, reported_at) VALUES (?, ?)', [donorId, new Date().toISOString()]);
 
         const { count } = await get('SELECT COUNT(*) AS count FROM Reports WHERE donor_id = ?', [donorId]);
