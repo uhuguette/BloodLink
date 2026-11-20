@@ -23,6 +23,25 @@ const translations = {
         communitySupport: "♡ Community Support",
         acrossRwanda: "📍 Across Rwanda",
 
+        // Homepage sections
+        aboutTitle: "About BloodLink",
+        aboutText: "BloodLink Rwanda is a platform designed to make it easier for people searching for blood donors to connect with willing donors based on blood type and district. It works alongside Rwanda's official blood system (RBC/NCBT), not in place of it.",
+        howTitle: "How BloodLink Works",
+        step1Title: "1. Search",
+        step1Text: "Choose the blood type and district you need.",
+        step2Title: "2. Connect",
+        step2Text: "Find available donor contact information.",
+        step3Title: "3. Help",
+        step3Text: "Call the donor to discuss the next steps.",
+        joinTitle: "Be Part of the Change",
+        joinText: "Your willingness to help can make a difference in someone's life.",
+        registerDonor: "Register as a Donor",
+
+        // Footer
+        footerTitle: "BloodLink Rwanda | A student project prototype",
+        footerText: "Connecting donors, supporting communities.",
+        footerNote: "In an emergency, also contact your nearest official blood centre (RCBT). RBC toll-free line: 114.",
+
     },
 
     rw: {
@@ -45,6 +64,25 @@ const translations = {
         donorConsent: "✓ Uruhushya rw'Utanga Amaraso",
         communitySupport: "♡ Ubufatanye bw'Abaturage",
         acrossRwanda: "📍 Mu Rwanda Hose",
+
+        // Homepage sections
+        aboutTitle: "Ibyerekeye BloodLink",
+        aboutText: "BloodLink Rwanda ni urubuga rworohereza abashaka abatanga amaraso guhura n'abemeye kuyatanga, hakurikijwe ubwoko bw'amaraso n'akarere. Ikorana n'urwego rwa Leta rushinzwe amaraso (RBC/NCBT), ntirusimbura.",
+        howTitle: "Uko BloodLink Ikora",
+        step1Title: "1. Shakisha",
+        step1Text: "Hitamo ubwoko bw'amaraso n'akarere ukeneye.",
+        step2Title: "2. Huza",
+        step2Text: "Bona nimero z'abatanga amaraso bahari.",
+        step3Title: "3. Fasha",
+        step3Text: "Hamagara utanga amaraso muganire ku bikurikira.",
+        joinTitle: "Ba Umwe mu Bazana Impinduka",
+        joinText: "Ubushake bwawe bwo gufasha bushobora guhindura ubuzima bw'undi.",
+        registerDonor: "Iyandikishe nk'Utanga Amaraso",
+
+        // Footer
+        footerTitle: "BloodLink Rwanda | Igerageza ry'umushinga w'umunyeshuri",
+        footerText: "Duhuza abatanga amaraso, dushyigikira abaturage.",
+        footerNote: "Mu gihe cyihutirwa, vugana kandi n'ikigo cya Leta gishinzwe gutanga amaraso (RCBT) kikwegereye. Umurongo wa RBC utishyurwa: 114.",
 
     }
 };

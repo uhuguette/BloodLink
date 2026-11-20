@@ -29,7 +29,7 @@
 
         <div class="nav-actions">
 
-            <select class="language-selector" id="languageSelector">
+            <select class="language-selector" id="languageSelector" aria-label="Language">
                 <option value="en">EN</option>
                 <option value="rw">RW</option>
             </select>
@@ -52,8 +52,8 @@
 
         <h2>
             <span data-translate="heroTitle">Donate Blood.</span><br>
-    <span data-translate="heroLine2">Save Lives.</span><br>
-    <span data-translate="heroLine3">Instantly.</span>
+            <span data-translate="heroLine2">Save Lives.</span><br>
+            <span data-translate="heroLine3">Instantly.</span>
         </h2>
 
         <p data-translate="heroDescription">
@@ -83,9 +83,9 @@
 
         <!-- About Section -->
         <section class="about">
-            <h2>About BloodLink</h2>
+            <h2 data-translate="aboutTitle">About BloodLink</h2>
 
-            <p>
+            <p data-translate="aboutText">
                 BloodLink Rwanda is a platform designed to make it easier
                 for people searching for blood donors to connect with
                 willing donors based on blood type and district.
@@ -93,44 +93,45 @@
         </section>
 
         <!-- How It Works -->
-        <section class="how-it-works">
-            <h2>How BloodLink Works</h2>
+        <section class="how-it-works" id="how-it-works">
+            <h2 data-translate="howTitle">How BloodLink Works</h2>
 
             <div class="steps">
                 <div class="step">
-                    <h3>1. Search</h3>
-                    <p>Choose the blood type and district you need.</p>
+                    <h3 data-translate="step1Title">1. Search</h3>
+                    <p data-translate="step1Text">Choose the blood type and district you need.</p>
                 </div>
 
                 <div class="step">
-                    <h3>2. Connect</h3>
-                    <p>Find available donor contact information.</p>
+                    <h3 data-translate="step2Title">2. Connect</h3>
+                    <p data-translate="step2Text">Find available donor contact information.</p>
                 </div>
 
                 <div class="step">
-                    <h3>3. Help</h3>
-                    <p>Contact the donor to discuss the next steps.</p>
+                    <h3 data-translate="step3Title">3. Help</h3>
+                    <p data-translate="step3Text">Contact the donor to discuss the next steps.</p>
                 </div>
             </div>
         </section>
 
         <!-- Call to Action -->
         <section class="join-us">
-            <h2>Be Part of the Change</h2>
+            <h2 data-translate="joinTitle">Be Part of the Change</h2>
 
-            <p>
+            <p data-translate="joinText">
                 Your willingness to help can make a difference
                 in someone's life.
             </p>
 
-            <a href="register.html" class="btn">Register as a Donor</a>
+            <a href="register.html" class="btn" data-translate="registerDonor">Register as a Donor</a>
         </section>
     </main>
 
     <!-- Footer -->
     <footer>
-        <p>BloodLink Rwanda | A student project prototype</p>
-        <p>Connecting donors, supporting communities.</p>
+        <p data-translate="footerTitle">BloodLink Rwanda | A student project prototype</p>
+        <p data-translate="footerNote"></p>
+        <p data-translate="footerText">Connecting donors, supporting communities.</p>
     </footer>
 
 <script src="js/language.js"></script>
