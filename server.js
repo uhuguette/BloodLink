@@ -166,6 +166,31 @@ app.get('/api/donors/search', async (req, res) => {
     }
 });
 
+// ---------- FR 3.3: Report an unreachable donor ----------
+
+app.post('/api/donors/:id/report', async (req, res) => {
+    const donorId = Number(req.params.id);
+    if (!Number.isInteger(donorId)) return fail(res, 400, 'errGeneric', 'Invalid donor.');
+
+    try {
+        const donor = await get('SELECT id FROM Donors WHERE id = ?', [donorId]);
+        if (!donor) return fail(res, 404, 'errGeneric', 'Donor not found.');
+
+        await run('INSERT INTO Reports (donor_id, reported_at) VALUES (?, ?)', [donorId, new Date().toISOString()]);
+
+        const { count } = await get('SELECT COUNT(*) AS count FROM Reports WHERE donor_id = ?', [donorId]);
+        if (count >= REPORT_LIMIT) {
+            // Hidden from search until the admin reviews it
+            await run('UPDATE Donors SET active = 0 WHERE id = ?', [donorId]);
+        }
+
+        return res.json({ code: 'reportThanks', message: 'Thank you. The report was recorded.' });
+    } catch (error) {
+        console.error(error.message);
+        return fail(res, 500, 'errGeneric', 'Report failed. Please try again.');
+    }
+});
+
 // ---------- FR 4: RCBT information ----------
 
 app.get('/api/rcbt', async (req, res) => {
