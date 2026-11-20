@@ -92,6 +92,20 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'Public', 'index.html'));
 });
 
+// The admin dashboard lives outside Public so it cannot be opened without logging in
+app.get('/admin', (req, res) => {
+    if (!req.session.admin) {
+        return res.status(403).send(`<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Access denied - BloodLink</title><link rel="stylesheet" href="/css/style.css"></head>
+<body><main class="page"><section class="card">
+<h2>Access denied</h2><p>You must be logged in as an admin to view this page.</p>
+<a class="btn" href="/admin-login.html">Go to admin login</a>
+</section></main></body></html>`);
+    }
+    res.sendFile(path.join(__dirname, 'views', 'admin.html'));
+});
+
 // ---------- FR 1: Donor registration ----------
 
 app.post('/api/donors/register', async (req, res) => {

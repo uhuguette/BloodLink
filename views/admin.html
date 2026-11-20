@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>BloodLink Rwanda - Donor Management</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <a href="/index.html" class="logo">
+            <span class="logo-icon">♥</span>
+            <span class="logo-text">
+                <strong>BloodLink</strong>
+                <small>Rwanda Blood Network</small>
+            </span>
+        </a>
+        <div class="nav-actions">
+            <select class="language-selector" id="languageSelector" aria-label="Language">
+                <option value="en">EN</option>
+                <option value="rw">RW</option>
+            </select>
+            <button type="button" class="nav-button" id="logoutButton" data-translate="logoutButton">Log out</button>
+        </div>
+    </nav>
+</header>
+
+<main class="page page-wide">
+    <section class="card">
+        <h2 data-translate="adminTitle">Donor Management</h2>
+        <p class="card-intro"><span data-translate="loggedInAs">Logged in as</span> <strong id="adminName"></strong></p>
+
+        <div class="stats">
+            <div class="stat"><strong id="statTotal">0</strong><span data-translate="statTotal">Total donors</span></div>
+            <div class="stat stat-flagged"><strong id="statFlagged">0</strong><span data-translate="statFlagged">Flagged for review</span></div>
+            <div class="stat"><strong id="statVisible">0</strong><span data-translate="statVisible">Visible in search</span></div>
+        </div>
+
+        <label class="consent">
+            <input type="checkbox" id="flaggedOnly">
+            <span data-translate="showFlaggedOnly">Show flagged only</span>
+        </label>
+
+        <div class="table-wrap">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th data-translate="colName">Name</th>
+                        <th data-translate="colPhone">Phone</th>
+                        <th data-translate="colBloodType">Blood type</th>
+                        <th data-translate="colDistrict">District</th>
+                        <th data-translate="lastConfirmed">Last confirmed</th>
+                        <th data-translate="colReports">Reports</th>
+                        <th data-translate="colStatus">Status</th>
+                        <th data-translate="colActions">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="donorRows"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2 data-translate="removalLogTitle">Removal log</h2>
+        <div class="table-wrap">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th data-translate="colAdmin">Admin</th>
+                        <th data-translate="colDonorId">Donor ID</th>
+                        <th data-translate="colDate">Date and time</th>
+                    </tr>
+                </thead>
+                <tbody id="removalRows"></tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+<script src="/js/ui.js"></script>
+<script src="/js/language.js"></script>
+<script src="/js/admin.js"></script>
+</body>
+</html>
