@@ -62,6 +62,12 @@ async function rcbtList(district) {
         .sort((a, b) => Number(b.nearest) - Number(a.nearest));
 }
 
+// NFR 1: only logged-in admins get through
+function requireAdmin(req, res, next) {
+    if (req.session && req.session.admin) return next();
+    return fail(res, 401, 'accessDenied', 'Access denied.');
+}
+
 // ---------- Pages ----------
 
 app.get('/', (req, res) => {
@@ -207,6 +213,43 @@ app.get('/api/rcbt', async (req, res) => {
         console.error(error.message);
         return fail(res, 500, 'errGeneric', 'Could not load blood centres.');
     }
+});
+
+// ---------- FR 5: Admin ----------
+
+app.post('/api/admin/login', async (req, res) => {
+    const { username, password } = req.body || {};
+
+    if (typeof username !== 'string' || typeof password !== 'string') {
+        return fail(res, 401, 'errLogin', 'Access denied. Wrong username or password.');
+    }
+
+    try {
+        const admin = await get('SELECT username, password FROM Admins WHERE username = ?', [username.trim()]);
+        const valid = admin && await bcrypt.compare(password, admin.password);
+
+        if (!valid) {
+            return fail(res, 401, 'errLogin', 'Access denied. Wrong username or password.');
+        }
+
+        // New session ID after login
+        req.session.regenerate((error) => {
+            if (error) return fail(res, 500, 'errGeneric', 'Login failed.');
+            req.session.admin = admin.username;
+            return res.json({ username: admin.username });
+        });
+    } catch (error) {
+        console.error(error.message);
+        return fail(res, 500, 'errGeneric', 'Login failed.');
+    }
+});
+
+app.post('/api/admin/logout', (req, res) => {
+    req.session.destroy(() => res.json({ ok: true }));
+});
+
+app.get('/api/admin/me', requireAdmin, (req, res) => {
+    res.json({ username: req.session.admin });
 });
 
 // Start the server
