@@ -41,9 +41,12 @@ app.use(session({
     secret: process.env.SESSION_SECRET || 'bloodlink-development-secret',
     resave: false,
     saveUninitialized: false,
+    rolling: true,
     cookie: {
         maxAge: SESSION_MINUTES * 60 * 1000,
-        httpOnly: true
+        httpOnly: true,
+        sameSite: 'lax',
+        secure: IS_PRODUCTION
     }
 }));
 
