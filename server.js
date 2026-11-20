@@ -330,6 +330,16 @@ app.post('/api/admin/donors/:id/keep', requireAdmin, async (req, res) => {
     }
 });
 
+app.get('/api/admin/removals', requireAdmin, async (req, res) => {
+    try {
+        const removals = await all('SELECT * FROM RemovalLog ORDER BY removed_at DESC LIMIT 200');
+        return res.json({ removals });
+    } catch (error) {
+        console.error(error.message);
+        return fail(res, 500, 'errGeneric', 'Could not load the removal log.');
+    }
+});
+
 // Start the server
 app.listen(PORT, () => {
     console.log(`BloodLink is running at http://localhost:${PORT}`);
