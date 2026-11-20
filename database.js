@@ -71,4 +71,26 @@ db.serialize(() => {
 
 });
 
-module.exports = db;
+// Promise helpers so the server code can use async/await
+function get(sql, params = []) {
+    return new Promise((resolve, reject) => {
+        db.get(sql, params, (error, row) => (error ? reject(error) : resolve(row)));
+    });
+}
+
+function all(sql, params = []) {
+    return new Promise((resolve, reject) => {
+        db.all(sql, params, (error, rows) => (error ? reject(error) : resolve(rows)));
+    });
+}
+
+function run(sql, params = []) {
+    return new Promise((resolve, reject) => {
+        db.run(sql, params, function (error) {
+            if (error) reject(error);
+            else resolve({ lastID: this.lastID, changes: this.changes });
+        });
+    });
+}
+
+module.exports = { db, get, all, run };
