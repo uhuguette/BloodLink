@@ -37,6 +37,10 @@ app.use(express.static(path.join(__dirname, 'Public')));
 
 // ---------- Helpers ----------
 
+function firstName(fullName) {
+    return fullName.trim().split(/\s+/)[0];
+}
+
 // Every error is sent with a "code" so the website can show it in English or Kinyarwanda
 function fail(res, status, code, message) {
     return res.status(status).json({ code, message });
@@ -103,6 +107,46 @@ app.post('/api/donors/register', async (req, res) => {
     } catch (error) {
         console.error(error.message);
         return fail(res, 500, 'errGeneric', 'Registration failed. Please try again.');
+    }
+});
+
+// ---------- FR 2 + FR 3: Donor search ----------
+
+app.get('/api/donors/search', async (req, res) => {
+    const { bloodType, district } = req.query;
+
+    if (!BLOOD_TYPES.includes(bloodType) || !DISTRICTS.includes(district)) {
+        return fail(res, 400, 'errSearchRequired', 'Please choose a blood type and a district.');
+    }
+
+    try {
+        // FR 2.3: hidden donors are left out
+        const rows = await all(
+            `SELECT id, name, blood_type, district, phone, last_confirmed
+             FROM Donors
+             WHERE blood_type = ? AND district = ? AND active = 1
+             ORDER BY last_confirmed DESC
+             LIMIT ?`,
+            [bloodType, district, MAX_RESULTS]
+        );
+
+        // NFR 5: only the first name is shown
+        const donors = rows.map((donor) => ({
+            id: donor.id,
+            firstName: firstName(donor.name),
+            bloodType: donor.blood_type,
+            district: donor.district,
+            phone: donor.phone,
+            lastConfirmed: donor.last_confirmed
+        }));
+
+        // FR 3.2: never leave the seeker with an empty screen
+        const rcbt = [];
+
+        return res.json({ donors, rcbt });
+    } catch (error) {
+        console.error(error.message);
+        return fail(res, 500, 'errGeneric', 'Search failed. Please try again.');
     }
 });
 
