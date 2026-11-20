@@ -17,6 +17,21 @@ const STALE_DAYS = 90;           // hidden if not reconfirmed in 90 days
 const REPORT_LIMIT = 2;          // hidden after 2 reports
 const SESSION_MINUTES = 15;      // NFR 2
 
+if (IS_PRODUCTION && !process.env.SESSION_SECRET) {
+    console.warn('WARNING: set the SESSION_SECRET environment variable in production.');
+}
+
+// Free hosts (Render, Railway) sit behind a proxy that handles HTTPS
+app.set('trust proxy', 1);
+
+// NFR 6: send http visitors to https (only on the live server)
+app.use((req, res, next) => {
+    if (IS_PRODUCTION && !req.secure) {
+        return res.redirect(301, `https://${req.headers.host}${req.originalUrl}`);
+    }
+    next();
+});
+
 // Read information sent from forms
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
