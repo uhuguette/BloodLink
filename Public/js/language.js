@@ -83,6 +83,23 @@ const translations = {
         errLogin: "Access denied. Wrong username or password.",
         accessDenied: "Access denied.",
 
+        // Search page
+        searchTitle: "Find a Blood Donor",
+        searchIntro: "Choose the blood type and district, then press Search.",
+        searchButton: "Search",
+        searching: "Searching...",
+        resultsCount: "{n} donor(s) found",
+        lastConfirmed: "Last confirmed",
+        callButton: "📞 Call",
+        reportButton: "Number doesn't work",
+        reportConfirm: "Report this number as not working?",
+        reportThanks: "Thank you. The report was recorded.",
+        noResultsTitle: "No matching donor found",
+        noResultsText: "Please contact the nearest official blood transfusion centre (RCBT):",
+        nearest: "Nearest",
+        rcbtTitle: "Official Blood Transfusion Centres (RCBT)",
+        rcbtIntro: "BloodLink works alongside Rwanda's official blood system. These centres can also help you.",
+
     },
 
     rw: {
@@ -165,6 +182,23 @@ const translations = {
         errSearchRequired: "Hitamo ubwoko bw'amaraso n'akarere.",
         errLogin: "Ntibyemewe. Izina cyangwa ijambo ry'ibanga si byo.",
         accessDenied: "Ntibyemewe.",
+
+        // Search page
+        searchTitle: "Shaka Utanga Amaraso",
+        searchIntro: "Hitamo ubwoko bw'amaraso n'akarere, hanyuma ukande Shakisha.",
+        searchButton: "Shakisha",
+        searching: "Turashakisha...",
+        resultsCount: "Habonetse abatanga amaraso {n}",
+        lastConfirmed: "Aheruka kwemeza",
+        callButton: "📞 Hamagara",
+        reportButton: "Nimero ntikora",
+        reportConfirm: "Uremeza ko iyi nimero idakora?",
+        reportThanks: "Murakoze. Ikibazo cyanditswe.",
+        noResultsTitle: "Nta utanga amaraso uhuye n'ibyo ushaka wabonetse",
+        noResultsText: "Vugana n'ikigo cya Leta gishinzwe gutanga amaraso (RCBT) kikwegereye:",
+        nearest: "Ikikwegereye",
+        rcbtTitle: "Ibigo bya Leta Bishinzwe Gutanga Amaraso (RCBT)",
+        rcbtIntro: "BloodLink ikorana n'urwego rwa Leta rushinzwe amaraso. Ibi bigo nabyo bishobora kugufasha.",
 
     }
 };
