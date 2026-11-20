@@ -358,6 +358,9 @@ app.get('/api/admin/removals', requireAdmin, async (req, res) => {
     }
 });
 
+// Unknown API routes
+app.use('/api', (req, res) => fail(res, 404, 'errGeneric', 'Not found.'));
+
 // Start the server
 app.listen(PORT, () => {
     console.log(`BloodLink is running at http://localhost:${PORT}`);
