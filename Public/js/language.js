@@ -37,6 +37,19 @@ const translations = {
         joinText: "Your willingness to help can make a difference in someone's life.",
         registerDonor: "Register as a Donor",
 
+        // FAQ
+        faqTitle: "Help & FAQ",
+        faqQ1: "How do I register as a donor?",
+        faqA1: "Press Donate, fill in your name, phone number, blood type and district, tick the consent box and press Register. It takes less than 2 minutes.",
+        faqQ2: "How do I find a donor?",
+        faqA2: "Press Find a Donor, choose the blood type and the district, then press Search. Call a donor directly from the results.",
+        faqQ3: "What if no donor is found?",
+        faqA3: "BloodLink shows you the contacts of the nearest official blood transfusion centre (RCBT).",
+        faqQ4: "How do I stay visible as a donor?",
+        faqA4: "Register again with the same phone number at least every 90 days to confirm you are still available. Donors who do not reconfirm are hidden from search.",
+        faqQ5: "Who can see my details?",
+        faqA5: "Only people who search for your blood type in your district. They see your first name, blood type, district and phone number. The list cannot be downloaded.",
+
         // Footer
         footerTitle: "BloodLink Rwanda | A student project prototype",
         footerText: "Connecting donors, supporting communities.",
@@ -78,6 +91,19 @@ const translations = {
         joinTitle: "Ba Umwe mu Bazana Impinduka",
         joinText: "Ubushake bwawe bwo gufasha bushobora guhindura ubuzima bw'undi.",
         registerDonor: "Iyandikishe nk'Utanga Amaraso",
+
+        // FAQ
+        faqTitle: "Ubufasha n'Ibibazo Bikunze Kubazwa",
+        faqQ1: "Niyandikisha nte nk'utanga amaraso?",
+        faqA1: "Kanda 'Tanga Amaraso', wuzuze izina, nimero ya telefoni, ubwoko bw'amaraso n'akarere, wemeze agasanduku k'uruhushya hanyuma ukande 'Iyandikishe'. Bifata munsi y'iminota 2.",
+        faqQ2: "Nabona nte utanga amaraso?",
+        faqA2: "Kanda 'Shaka Utanga Amaraso', hitamo ubwoko bw'amaraso n'akarere, hanyuma ukande 'Shakisha'. Hamagara utanga amaraso uri ku rutonde.",
+        faqQ3: "Bigenda bite iyo nta utanga amaraso ubonetse?",
+        faqA3: "BloodLink ikwereka nimero z'ikigo cya Leta gishinzwe gutanga amaraso (RCBT) kikwegereye.",
+        faqQ4: "Nakomeza nte kugaragara nk'utanga amaraso?",
+        faqA4: "Ongera wiyandikishe ukoresheje nimero imwe nibura buri minsi 90 kugira ngo wemeze ko ukiboneka. Abatabyemeje ntibagaragara mu ishakisha.",
+        faqQ5: "Ni nde ubona amakuru yanjye?",
+        faqA5: "Ni abashaka ubwoko bw'amaraso yawe mu karere kawe gusa. Babona izina ryawe rya mbere, ubwoko bw'amaraso, akarere na nimero ya telefoni. Urutonde ntirushobora gukururwa.",
 
         // Footer
         footerTitle: "BloodLink Rwanda | Igerageza ry'umushinga w'umunyeshuri",
