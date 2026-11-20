@@ -10,12 +10,11 @@
 <body>
 
     <!-- Navigation -->
-    <header>
+<header>
     <nav class="navbar">
 
         <a href="index.html" class="logo">
             <span class="logo-icon">♥</span>
-
             <span class="logo-text">
                 <strong>BloodLink</strong>
                 <small>Rwanda Blood Network</small>
@@ -23,61 +22,60 @@
         </a>
 
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="#how-it-works">How It Works</a></li>
-            <li><a href="register.html">Get Involved</a></li>
+            <li><a href="index.html" data-translate="home">Home</a></li>
+            <li><a href="#how-it-works" data-translate="howItWorks">How It Works</a></li>
+            <li><a href="register.html" data-translate="getInvolved">Get Involved</a></li>
         </ul>
 
-       <div class="nav-actions">
+        <div class="nav-actions">
 
-    <select class="language-selector" id="languageSelector">
-        <option value="en">EN</option>
-        <option value="rw">RW</option>
-    </select>
+            <select class="language-selector" id="languageSelector">
+                <option value="en">EN</option>
+                <option value="rw">RW</option>
+            </select>
 
-    <a href="search.html" class="nav-button">Find a Donor</a>
-    <a href="register.html" class="nav-button nav-register">Donate</a>
+            <a href="search.html" class="nav-button" data-translate="findDonor">Find a Donor</a>
+            <a href="register.html" class="nav-button nav-register" data-translate="donate">Donate</a>
 
-</div>
-
+        </div>
     </nav>
 </header>
 
     <!-- Hero Section -->
     <main>
-        <section class="hero">
+       <section class="hero">
     <div class="hero-content">
 
-        <div class="hero-badge">
+        <div class="hero-badge" data-translate="heroBadge">
             ● Connecting Donors Across Rwanda
         </div>
 
         <h2>
-            Donate Blood.<br>
-            <span>Save Lives.</span><br>
-            Instantly.
+            <span data-translate="heroTitle">Donate Blood.</span><br>
+    <span data-translate="heroLine2">Save Lives.</span><br>
+    <span data-translate="heroLine3">Instantly.</span>
         </h2>
 
-        <p>
+        <p data-translate="heroDescription">
             Connect with willing blood donors across Rwanda
             through a platform that helps people find donors
             by blood type and district.
         </p>
 
         <div class="hero-buttons">
-            <a href="search.html" class="btn">
+            <a href="search.html" class="btn" data-translate="needBlood">
                 ♥ I Need Blood →
             </a>
 
-            <a href="register.html" class="btn btn-secondary">
+            <a href="register.html" class="btn btn-secondary" data-translate="wantDonate">
                 ♡ I Want to Donate →
             </a>
         </div>
 
         <div class="hero-features">
-            <span>✓ Donor Consent</span>
-            <span>♡ Community Support</span>
-            <span>📍 Across Rwanda</span>
+            <span data-translate="donorConsent">✓ Donor Consent</span>
+            <span data-translate="communitySupport">♡ Community Support</span>
+            <span data-translate="acrossRwanda">📍 Across Rwanda</span>
         </div>
 
     </div>
@@ -135,5 +133,6 @@
         <p>Connecting donors, supporting communities.</p>
     </footer>
 
+<script src="js/language.js"></script>
 </body>
 </html>
