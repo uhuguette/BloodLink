@@ -311,6 +311,25 @@ app.delete('/api/admin/donors/:id', requireAdmin, async (req, res) => {
     }
 });
 
+// Admin reviewed a flagged donor and decided to keep them
+app.post('/api/admin/donors/:id/keep', requireAdmin, async (req, res) => {
+    const donorId = Number(req.params.id);
+    if (!Number.isInteger(donorId)) return fail(res, 400, 'errGeneric', 'Invalid donor.');
+
+    try {
+        await run('DELETE FROM Reports WHERE donor_id = ?', [donorId]);
+        const result = await run(
+            'UPDATE Donors SET active = 1, last_confirmed = ? WHERE id = ?',
+            [new Date().toISOString(), donorId]
+        );
+        if (result.changes === 0) return fail(res, 404, 'errGeneric', 'Donor not found.');
+        return res.json({ code: 'kept', message: 'Donor kept.' });
+    } catch (error) {
+        console.error(error.message);
+        return fail(res, 500, 'errGeneric', 'Could not update donor.');
+    }
+});
+
 // Start the server
 app.listen(PORT, () => {
     console.log(`BloodLink is running at http://localhost:${PORT}`);
