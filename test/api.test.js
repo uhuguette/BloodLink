@@ -73,3 +73,42 @@ test('FR 1.2: same phone number updates the existing record', async () => {
     const { count } = await get("SELECT COUNT(*) AS count FROM Donors WHERE phone = '0782222222'");
     assert.strictEqual(count, 1);
 });
+
+test('FR 3.1 + NFR 5: search shows first names only, max 20', async () => {
+    for (let i = 0; i < 25; i++) {
+        await register({ name: `Donor${i} Lastname`, phone: `07830000${String(i).padStart(2, '0')}`, bloodType: 'O-', district: 'Huye' });
+    }
+    const result = await search('O-', 'Huye');
+    assert.strictEqual(result.donors.length, 20);
+    assert.ok(result.donors.every((d) => !d.firstName.includes(' ')));
+    assert.ok(result.donors[0].phone && result.donors[0].lastConfirmed);
+});
+
+test('FR 3.2: no results returns RCBT contacts, nearest first', async () => {
+    const result = await search('B-', 'Rusizi');
+    assert.strictEqual(result.donors.length, 0);
+    assert.ok(result.rcbt.length > 0);
+    assert.strictEqual(result.rcbt[0].city, 'Karongi');
+    assert.strictEqual(result.rcbt[0].nearest, true);
+});
+
+test('Donors not reconfirmed in 90 days are hidden', async () => {
+    await register({ name: 'Old Donor', phone: '0784444444', bloodType: 'A-', district: 'Musanze' });
+    await run("UPDATE Donors SET last_confirmed = '2020-01-01T00:00:00.000Z' WHERE phone = '0784444444'");
+    assert.strictEqual((await search('A-', 'Musanze')).donors.length, 0);
+});
+
+test('FR 3.3: two reports hide a donor; one person cannot report twice', async () => {
+    await register({ name: 'Reported Donor', phone: '0785555555', bloodType: 'B+', district: 'Nyanza' });
+    const [donor] = (await search('B+', 'Nyanza')).donors;
+
+    // The same browser reporting twice only counts once
+    const first = await fetch(`${base}/api/donors/${donor.id}/report`, { method: 'POST' });
+    const cookie = first.headers.get('set-cookie').split(';')[0];
+    await fetch(`${base}/api/donors/${donor.id}/report`, { method: 'POST', headers: { cookie } });
+    assert.strictEqual((await search('B+', 'Nyanza')).donors.length, 1);
+
+    // A second person reports it: now hidden
+    await fetch(`${base}/api/donors/${donor.id}/report`, { method: 'POST' });
+    assert.strictEqual((await search('B+', 'Nyanza')).donors.length, 0);
+});
