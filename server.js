@@ -252,6 +252,41 @@ app.get('/api/admin/me', requireAdmin, (req, res) => {
     res.json({ username: req.session.admin });
 });
 
+// FR 5.2: full donor list, flagged donors marked
+app.get('/api/admin/donors', requireAdmin, async (req, res) => {
+    try {
+        const cutoff = staleCutoff();
+        const rows = await all(
+            `SELECT d.*, (SELECT COUNT(*) FROM Reports r WHERE r.donor_id = d.id) AS reports
+             FROM Donors d
+             ORDER BY d.registration_date DESC`
+        );
+
+        const donors = rows.map((donor) => {
+            const reported = donor.active === 0 || donor.reports >= REPORT_LIMIT;
+            const stale = donor.last_confirmed < cutoff;
+            return {
+                id: donor.id,
+                name: donor.name,
+                phone: donor.phone,
+                bloodType: donor.blood_type,
+                district: donor.district,
+                registrationDate: donor.registration_date,
+                lastConfirmed: donor.last_confirmed,
+                reports: donor.reports,
+                reported,
+                stale,
+                flagged: reported || stale
+            };
+        });
+
+        return res.json({ donors });
+    } catch (error) {
+        console.error(error.message);
+        return fail(res, 500, 'errGeneric', 'Could not load donors.');
+    }
+});
+
 // Start the server
 app.listen(PORT, () => {
     console.log(`BloodLink is running at http://localhost:${PORT}`);
