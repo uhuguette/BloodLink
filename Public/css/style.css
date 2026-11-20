@@ -611,6 +611,164 @@ button:disabled {
     border: 1px solid #ffd5d9;
 }
 
+/* Search form: 3 actions in one row on wide screens (NFR 10) */
+.search-form {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.search-form .field {
+    flex: 1 1 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.search-form button {
+    flex: 1 1 140px;
+    margin-top: 0;
+    padding: 13px;
+    font-weight: bold;
+}
+
+/* Donor results */
+.donor-list,
+.rcbt-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.donor-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    border: 1px solid #f1dddd;
+    border-radius: 10px;
+    flex-wrap: wrap;
+}
+
+.donor-blood {
+    background-color: #c91f2c;
+    color: white;
+    font-weight: 800;
+    font-size: 18px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.donor-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 150px;
+}
+
+.donor-info strong {
+    font-size: 17px;
+    color: #202638;
+}
+
+.donor-info span,
+.donor-info small {
+    color: #666;
+    font-size: 13px;
+}
+
+.donor-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+}
+
+.link-button {
+    background: none;
+    color: #777;
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+    text-decoration: underline;
+}
+
+.link-button:hover {
+    background: none;
+    color: #c91f2c;
+}
+
+.report-done {
+    font-size: 12px;
+    color: #166534;
+}
+
+.no-results {
+    background-color: #fff8f8;
+    border-left: 4px solid #c91f2c;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.no-results p {
+    color: #555;
+}
+
+/* RCBT list */
+.rcbt-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 12px 15px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+}
+
+.rcbt-item div {
+    display: flex;
+    flex-direction: column;
+}
+
+.rcbt-item small {
+    color: #777;
+}
+
+.rcbt-item.nearest {
+    border-color: #c91f2c;
+    background-color: #fff8f8;
+}
+
+.badge {
+    display: inline-block;
+    width: fit-content;
+    background-color: #c91f2c;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 20px;
+}
+
+@media (max-width: 480px) {
+    .donor-actions {
+        align-items: stretch;
+        width: 100%;
+    }
+
+    .donor-actions .btn-small {
+        text-align: center;
+    }
+}
+
 /* FAQ */
 .faq {
     max-width: 800px;
