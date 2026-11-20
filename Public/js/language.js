@@ -55,6 +55,34 @@ const translations = {
         footerText: "Connecting donors, supporting communities.",
         footerNote: "In an emergency, also contact your nearest official blood centre (RCBT). RBC toll-free line: 114.",
 
+        // Registration page
+        registerTitle: "Register as a Blood Donor",
+        registerIntro: "Your details are only shown to people searching for your blood type in your district, and only your first name is shown.",
+        labelName: "Full name",
+        labelPhone: "Phone number",
+        labelBloodType: "Blood type",
+        labelDistrict: "District",
+        namePlaceholder: "e.g. Aline Mukamana",
+        chooseBloodType: "Choose blood type",
+        chooseDistrict: "Choose district",
+        consentText: "I agree that my first name, blood type, district and phone number can be shown to people searching for a blood donor.",
+        registerButton: "Register",
+        registerSuccess: "Thank you! You are now registered as a donor.",
+        registerUpdated: "Thank you! Your details were updated and reconfirmed.",
+        alreadyRegistered: "Already registered? Register again with the same phone number every 90 days to stay visible.",
+
+        // Errors
+        errRequired: "Please fill in all required fields.",
+        errName: "Your name is too long.",
+        errPhone: "Enter a valid Rwandan phone number (07XXXXXXXX).",
+        errBloodType: "Please choose a valid blood type.",
+        errDistrict: "Please choose a valid district.",
+        errConsent: "Please tick the consent box to register.",
+        errGeneric: "Something went wrong. Please try again.",
+        errSearchRequired: "Please choose a blood type and a district.",
+        errLogin: "Access denied. Wrong username or password.",
+        accessDenied: "Access denied.",
+
     },
 
     rw: {
@@ -109,6 +137,34 @@ const translations = {
         footerTitle: "BloodLink Rwanda | Igerageza ry'umushinga w'umunyeshuri",
         footerText: "Duhuza abatanga amaraso, dushyigikira abaturage.",
         footerNote: "Mu gihe cyihutirwa, vugana kandi n'ikigo cya Leta gishinzwe gutanga amaraso (RCBT) kikwegereye. Umurongo wa RBC utishyurwa: 114.",
+
+        // Registration page
+        registerTitle: "Iyandikishe nk'Utanga Amaraso",
+        registerIntro: "Amakuru yawe yerekwa gusa abashaka ubwoko bw'amaraso yawe mu karere kawe, kandi hagaragazwa izina ryawe rya mbere gusa.",
+        labelName: "Amazina yose",
+        labelPhone: "Nimero ya telefoni",
+        labelBloodType: "Ubwoko bw'amaraso",
+        labelDistrict: "Akarere",
+        namePlaceholder: "urugero: Aline Mukamana",
+        chooseBloodType: "Hitamo ubwoko bw'amaraso",
+        chooseDistrict: "Hitamo akarere",
+        consentText: "Nemeye ko izina ryanjye rya mbere, ubwoko bw'amaraso, akarere na nimero ya telefoni byerekwa abashaka utanga amaraso.",
+        registerButton: "Iyandikishe",
+        registerSuccess: "Murakoze! Mwanditswe nk'utanga amaraso.",
+        registerUpdated: "Murakoze! Amakuru yanyu yavuguruwe kandi yemejwe.",
+        alreadyRegistered: "Wariyandikishije? Ongera wiyandikishe ukoresheje nimero imwe buri minsi 90 kugira ngo ukomeze kugaragara.",
+
+        // Errors
+        errRequired: "Uzuza ibisabwa byose.",
+        errName: "Izina ryawe ni rirerire cyane.",
+        errPhone: "Andika nimero ya telefoni yemewe mu Rwanda (07XXXXXXXX).",
+        errBloodType: "Hitamo ubwoko bw'amaraso bwemewe.",
+        errDistrict: "Hitamo akarere kemewe.",
+        errConsent: "Emeza agasanduku k'uruhushya kugira ngo wiyandikishe.",
+        errGeneric: "Habaye ikibazo. Ongera ugerageze.",
+        errSearchRequired: "Hitamo ubwoko bw'amaraso n'akarere.",
+        errLogin: "Ntibyemewe. Izina cyangwa ijambo ry'ibanga si byo.",
+        accessDenied: "Ntibyemewe.",
 
     }
 };

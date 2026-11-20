@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BloodLink Rwanda - Register as a Donor</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <span class="logo-icon">♥</span>
+            <span class="logo-text">
+                <strong>BloodLink</strong>
+                <small>Rwanda Blood Network</small>
+            </span>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="index.html" data-translate="home">Home</a></li>
+            <li><a href="index.html#how-it-works" data-translate="howItWorks">How It Works</a></li>
+            <li><a href="index.html#help" data-translate="help">Help</a></li>
+            <li><a href="register.html" data-translate="getInvolved">Get Involved</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <select class="language-selector" id="languageSelector" aria-label="Language">
+                <option value="en">EN</option>
+                <option value="rw">RW</option>
+            </select>
+            <a href="search.html" class="nav-button" data-translate="findDonor">Find a Donor</a>
+            <a href="register.html" class="nav-button nav-register" data-translate="donate">Donate</a>
+        </div>
+    </nav>
+</header>
+
+<main class="page">
+    <section class="card">
+        <h2 data-translate="registerTitle">Register as a Blood Donor</h2>
+        <p class="card-intro" data-translate="registerIntro"></p>
+
+        <form id="registrationForm" novalidate>
+            <label for="name" data-translate="labelName">Full name</label>
+            <input type="text" id="name" name="name" maxlength="100" autocomplete="name"
+                   data-translate-placeholder="namePlaceholder" required>
+
+            <label for="phone" data-translate="labelPhone">Phone number</label>
+            <input type="tel" id="phone" name="phone" inputmode="numeric" maxlength="13"
+                   placeholder="07XXXXXXXX" autocomplete="tel" required>
+            <span class="error-message" id="phoneError"></span>
+
+            <label for="bloodType" data-translate="labelBloodType">Blood type</label>
+            <select id="bloodType" name="bloodType" required></select>
+
+            <label for="district" data-translate="labelDistrict">District</label>
+            <select id="district" name="district" required></select>
+
+            <label class="consent">
+                <input type="checkbox" id="consent" name="consent">
+                <span data-translate="consentText">I agree that my details can be shown to people searching for a blood donor.</span>
+            </label>
+
+            <button type="submit" data-translate="registerButton">Register</button>
+
+            <p class="form-message" id="registrationMessage" role="status" hidden></p>
+        </form>
+
+        <p class="card-note" data-translate="alreadyRegistered"></p>
+    </section>
+</main>
+
+<footer>
+    <p data-translate="footerTitle">BloodLink Rwanda | A student project prototype</p>
+    <p data-translate="footerText">Connecting donors, supporting communities.</p>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/language.js"></script>
+<script src="js/register.js"></script>
+</body>
+</html>
