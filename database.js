@@ -15,6 +15,17 @@ const db = new sqlite3.Database(dbPath, (error) => {
     }
 });
 
+// Official Regional Centres for Blood Transfusion.
+// TODO: confirm each centre's direct phone number with RBC before launch.
+// 114 is the RBC toll-free line.
+const RCBT_SEED = [
+    ['National Centre for Blood Transfusion (NCBT)', 'Kigali', '114'],
+    ['RCBT Huye', 'Huye', '114'],
+    ['RCBT Karongi', 'Karongi', '114'],
+    ['RCBT Musanze', 'Musanze', '114'],
+    ['RCBT Rwamagana', 'Rwamagana', '114']
+];
+
 db.serialize(() => {
     db.run('PRAGMA foreign_keys = ON');
 
@@ -65,10 +76,30 @@ db.serialize(() => {
         CREATE TABLE IF NOT EXISTS RCBTContacts (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT NOT NULL,
+            city TEXT NOT NULL DEFAULT '',
             phone TEXT NOT NULL
         )
     `);
 
+    // Older databases were created without the city column: add it
+    db.all('PRAGMA table_info(RCBTContacts)', (error, columns) => {
+        if (error) return;
+
+        const addSeed = () => {
+            db.get('SELECT COUNT(*) AS count FROM RCBTContacts', (err, row) => {
+                if (err || row.count > 0) return;
+                const insert = db.prepare('INSERT INTO RCBTContacts (name, city, phone) VALUES (?, ?, ?)');
+                RCBT_SEED.forEach((centre) => insert.run(centre));
+                insert.finalize();
+            });
+        };
+
+        if (!columns.some((column) => column.name === 'city')) {
+            db.run("ALTER TABLE RCBTContacts ADD COLUMN city TEXT NOT NULL DEFAULT ''", addSeed);
+        } else {
+            addSeed();
+        }
+    });
 });
 
 // Promise helpers so the server code can use async/await

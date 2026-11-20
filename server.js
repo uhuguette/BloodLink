@@ -52,6 +52,16 @@ function fail(res, status, code, message) {
     return res.status(status).json({ code, message });
 }
 
+async function rcbtList(district) {
+    const centres = await all('SELECT name, city, phone FROM RCBTContacts ORDER BY name');
+    const nearestCity = NEAREST_RCBT[district];
+
+    // Put the nearest centre first
+    return centres
+        .map((centre) => ({ ...centre, nearest: centre.city === nearestCity }))
+        .sort((a, b) => Number(b.nearest) - Number(a.nearest));
+}
+
 // ---------- Pages ----------
 
 app.get('/', (req, res) => {
@@ -147,12 +157,23 @@ app.get('/api/donors/search', async (req, res) => {
         }));
 
         // FR 3.2: never leave the seeker with an empty screen
-        const rcbt = [];
+        const rcbt = donors.length === 0 ? await rcbtList(district) : [];
 
         return res.json({ donors, rcbt });
     } catch (error) {
         console.error(error.message);
         return fail(res, 500, 'errGeneric', 'Search failed. Please try again.');
+    }
+});
+
+// ---------- FR 4: RCBT information ----------
+
+app.get('/api/rcbt', async (req, res) => {
+    try {
+        return res.json({ rcbt: await rcbtList(req.query.district) });
+    } catch (error) {
+        console.error(error.message);
+        return fail(res, 500, 'errGeneric', 'Could not load blood centres.');
     }
 });
 
